@@ -1,33 +1,311 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Atomik Soft</title>
-<META NAME="AUTHOR" CONTENT="ernesto.es">
-<META NAME="REPLY-TO" CONTENT="info@atomiksoft.com">
-<LINK REV="made" href="mailto:info@atomiksoft.com">
-<META NAME="DESCRIPTION" CONTENT="Mobile games development studio">
-<META NAME="KEYWORDS" CONTENT="android,iphone,games,atomik,trivial,trivia,windows phone,mobile">
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AtomikSoft | Ingeniería de Software a Nivel Atómico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#43d8f2",
+                        "primary": "#45d9f3",
+                        "surface-container": "#161f32",
+                        "on-secondary-fixed-variant": "#00429b",
+                        "on-primary-container": "#004752",
+                        "on-tertiary": "#2a303e",
+                        "tertiary-container": "#a6acbe",
+                        "primary-fixed": "#a2eeff",
+                        "surface-variant": "#2c3548",
+                        "outline-variant": "#3c494c",
+                        "on-primary-fixed": "#001f25",
+                        "on-primary-fixed-variant": "#004e5a",
+                        "error": "#ffb4ab",
+                        "tertiary": "#c1c7da",
+                        "on-secondary-container": "#f2f3ff",
+                        "on-surface-variant": "#bbc9cc",
+                        "inverse-on-surface": "#273044",
+                        "error-container": "#93000a",
+                        "primary-container": "#00bdd6",
+                        "on-tertiary-fixed-variant": "#404756",
+                        "background": "#0a1325",
+                        "secondary-container": "#0068ed",
+                        "on-tertiary-fixed": "#151c29",
+                        "secondary": "#b0c6ff",
+                        "surface-bright": "#30394d",
+                        "on-secondary": "#002d6e",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#0a1325",
+                        "inverse-primary": "#006877",
+                        "on-primary": "#00363e",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#2c3548",
+                        "on-secondary-fixed": "#001945",
+                        "surface-container-high": "#212a3d",
+                        "on-surface": "#d9e2fc",
+                        "outline": "#869396",
+                        "surface-container-low": "#121b2e",
+                        "tertiary-fixed-dim": "#c0c6d8",
+                        "surface-tint": "#43d8f2",
+                        "secondary-fixed": "#d9e2ff",
+                        "on-background": "#d9e2fc",
+                        "inverse-surface": "#d9e2fc",
+                        "surface-container-lowest": "#050e20",
+                        "on-tertiary-container": "#3a404f",
+                        "surface": "#0a1325",
+                        "secondary-fixed-dim": "#b0c6ff",
+                        "tertiary-fixed": "#dce2f5"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a1325;
+            color: #d9e2fc;
+            font-family: 'Manrope', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(44, 53, 72, 0.4);
+            backdrop-filter: blur(20px);
+        }
+
+        .atomic-glow {
+            background: radial-gradient(circle at center, rgba(69, 217, 243, 0.05) 0%, transparent 70%);
+        }
+
+        /* Animations */
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .reveal {
+            opacity: 0;
+        }
+
+        .reveal.active {
+            animation: reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+    </style>
 </head>
-<style type="text/css">
-body {
-	background-color: #FFFFFF;
-}
-.frame {
-	height: 100vh;
-	white-space: nowrap;
-    vertical-align: middle;
-
-    text-align: center; margin: 2em 0;
-
-}
-img {
-    vertical-align: middle;
-}
-</style>
-<body>
-<div class="frame">
-  <img alt="Atomik Soft" title="Atomik Soft" src="atom.png">
+<body class="antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/40 backdrop-blur-xl border-b border-cyan-400/10 shadow-[0_20px_50px_rgba(69,217,243,0.08)]">
+<nav class="flex justify-between items-center px-8 py-4 max-w-full">
+<div class="text-2xl font-bold tracking-tighter text-cyan-400 font-['Space_Grotesk']">
+                AtomikSoft
+            </div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] tracking-tight text-sm uppercase" href="#servicios">Servicios</a>
+<a class="text-slate-400 hover:text-cyan-300 transition-colors font-['Space_Grotesk'] tracking-tight text-sm uppercase" href="#nosotros">Nosotros</a>
+<a class="text-slate-400 hover:text-cyan-300 transition-colors font-['Space_Grotesk'] tracking-tight text-sm uppercase" href="#contacto">Contacto</a>
 </div>
-</body>
-</html>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-md font-bold text-sm tracking-tight uppercase hover:bg-cyan-400/90 hover:shadow-[0_0_20px_rgba(69,217,243,0.4)] transition-all duration-300 scale-95 active:scale-90">
+                Comenzar
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+<!-- Background Elements -->
+<div class="absolute inset-0 z-0 atomic-glow"></div>
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary-container/5 rounded-full blur-[150px] pointer-events-none"></div>
+<div class="container mx-auto relative z-10 text-center reveal active">
+<div class="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full bg-surface-container-highest/50 border border-outline-variant/20 backdrop-blur-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-label font-medium tracking-widest uppercase text-on-surface-variant">Inteligencia Agéntica Activada</span>
+</div>
+<h1 class="font-headline text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-on-surface mb-8 leading-[0.9] max-w-5xl mx-auto">
+                    Ingeniería de <span class="text-primary italic">Software</span> a Nivel Atómico
+                </h1>
+<p class="font-body text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-12 leading-relaxed">
+                    Especialistas en DevOps de alta precisión, arquitectura Full-Stack y ciberseguridad avanzada para la próxima generación de empresas digitales.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="w-full sm:w-auto px-10 py-4 bg-primary text-on-primary font-bold rounded-md hover:shadow-[0_0_30px_rgba(69,217,243,0.3)] transition-all duration-300 transform hover:-translate-y-1">
+                        Empieza Ahora
+                    </button>
+<button class="w-full sm:w-auto px-10 py-4 text-primary font-bold border border-primary/20 rounded-md hover:bg-primary/5 transition-all duration-300">
+                        Nuestra Metodología
+                    </button>
+</div>
+</div>
+<!-- Floating Hero Asset -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] opacity-20 pointer-events-none">
+<img alt="Atomic Structure" class="w-full h-full object-contain mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR2T_W9QBhivWFSJRGjoYGApBLmhjBfjxrDz2e69FSZ8hb5hNXXAY0IA0PpGJD6z1WwA_2S9ay15jiNqot9PLtkhPHw3WmzmCs-UeJEUQEK6vBfGX1c6cXh54pX0jSXPfqsK_0Mh2LOcBbNq6-o585OI1QW9h2fuNSsGsSgviBXSATAXBco6HuLlpyQCuwYNXkn4KYLVRTkDOaaW8UFJxkMmHE5DZJ76nQfwG_C7_W3hdQsLBJW8hPYknEfu3CdjHytJqAsSY_LlM"/>
+</div>
+</section>
+<!-- Main Content Horizontal Layout -->
+<div class="container mx-auto px-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-16 py-24 border-t border-outline-variant/10">
+<!-- Section: Services -->
+<section class="reveal" id="servicios">
+<div class="mb-12">
+<span class="text-xs font-label uppercase tracking-widest text-primary/60 mb-4 block">01 / Servicios</span>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface">Núcleos Técnicos</h2>
+</div>
+<div class="space-y-6">
+<div class="glass-card p-6 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="terminal">terminal</span>
+<h3 class="font-headline text-xl font-bold mb-2">Desarrollo Full-Stack</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Sistemas escalables construidos con Next.js, Python y arquitecturas de microservicios.</p>
+</div>
+<div class="glass-card p-6 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="settings_input_component">settings_input_component</span>
+<h3 class="font-headline text-xl font-bold mb-2">DevOps &amp; Cloud</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Automatización total de infraestructura (IaC) y orquestación con Kubernetes.</p>
+</div>
+<div class="glass-card p-6 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="shield_lock">shield_lock</span>
+<h3 class="font-headline text-xl font-bold mb-2">Ciberseguridad</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Protocolos Zero-Trust y auditorías preventivas para activos críticos.</p>
+</div>
+</div>
+</section>
+<!-- Section: About Us -->
+<section class="reveal stagger-1" id="nosotros">
+<div class="mb-12">
+<span class="text-xs font-label uppercase tracking-widest text-primary/60 mb-4 block">02 / Nosotros</span>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface">Arquitectura Cuántica</h2>
+</div>
+<div class="space-y-8">
+<p class="font-body text-on-surface-variant leading-relaxed">
+                            En AtomikSoft, descomponemos los problemas complejos en sus componentes fundamentales para reconstruir soluciones robustas y elegantes.
+                        </p>
+<div class="relative rounded-xl overflow-hidden aspect-video group">
+<img alt="Modern Lab" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Z_OMr3TzXT7HOHPxwo4p-m4HDWQMhoZwRcmn0ZhpcW_aujhyMYdgwuHF_NZqDiCCoW2lXvkgwCHQCnENFmCuHb-gSbnzqqjdsUBNHaVMETh2tC6BhVa_J_2Fy0w76AauBC3xuhuoIrKV5T0WgTsQeF4g5uWjAdeYx8Bm-UxUT8N-4TcLF8LVN-dOIdGICE-sbjzX0qa_nuah_iE8WDx80_ibvJXH_cGrQz1j8glj9i1-T_TpYQ5ZMdSGwS8GyamCFtthg4lNyfg"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+<div class="space-y-6">
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+<div>
+<h4 class="font-bold text-on-surface">Optimización Real</h4>
+<p class="text-sm text-on-surface-variant">Agentes autónomos que eliminan la fricción operativa.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+<div>
+<h4 class="font-bold text-on-surface">Escalabilidad Infinita</h4>
+<p class="text-sm text-on-surface-variant">Código evolutivo diseñado para el crecimiento global.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Contact -->
+<section class="reveal stagger-2" id="contacto">
+<div class="mb-12">
+<span class="text-xs font-label uppercase tracking-widest text-primary/60 mb-4 block">03 / Contacto</span>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface">Conexión Atómica</h2>
+</div>
+<div class="glass-card p-8 rounded-xl border border-primary/20 bg-primary/5">
+<h3 class="font-headline text-xl font-bold mb-6">¿Listo para transmutar su infraestructura?</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">Nuestro equipo técnico está listo para analizar sus requerimientos y proponer una solución de alta precisión.</p>
+<div class="space-y-6 mb-10">
+<div class="flex items-center gap-4 p-4 rounded-lg bg-slate-950/50 border border-outline-variant/10 group hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<a class="font-mono text-primary font-bold hover:underline" href="mailto:info@atomiksoft.com">info@atomiksoft.com</a>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-lg bg-slate-950/50 border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="text-sm">Global Remote / Madrid, ES</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-bold rounded-md shadow-[0_10px_20px_rgba(69,217,243,0.2)] hover:shadow-[0_15px_30px_rgba(69,217,243,0.4)] transition-all transform hover:scale-[1.02] active:scale-95">
+                            Agendar Consultoría
+                        </button>
+</div>
+</section>
+</div>
+</div>
+<!-- Call to Action Full Width -->
+<section class="py-24 px-8 container mx-auto reveal">
+<div class="relative rounded-2xl p-12 md:p-24 overflow-hidden text-center bg-gradient-to-br from-primary-container/20 to-transparent border border-primary/10">
+<div class="absolute top-0 right-0 p-8 opacity-20">
+<span class="material-symbols-outlined text-9xl text-primary" data-icon="join_inner">join_inner</span>
+</div>
+<h2 class="font-headline text-4xl md:text-6xl font-bold mb-8 relative z-10">El futuro se construye átomo por átomo.</h2>
+<p class="font-body text-xl text-on-surface-variant mb-12 max-w-2xl mx-auto relative z-10">Únase a las empresas líderes que ya están operando con precisión cuántica.</p>
+<div class="relative z-10">
+<button class="px-12 py-5 bg-primary text-on-primary font-bold text-lg rounded-md shadow-[0_20px_40px_rgba(69,217,243,0.15)] hover:shadow-[0_20px_50px_rgba(69,217,243,0.3)] transition-all transform hover:scale-105 active:scale-95">
+                        Iniciar Transformación
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 mt-24 bg-slate-950 tonal-shift bg-gradient-to-t from-slate-900 to-slate-950 border-t border-outline-variant/5">
+<div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-left">
+<div class="text-xl font-black text-cyan-400 tracking-widest uppercase mb-4">AtomikSoft</div>
+<p class="font-['Manrope'] text-sm text-slate-400 max-w-xs">© 2026 AtomikSoft. Ingeniería del Futuro Cuántico.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 hover:text-cyan-400 transition-colors duration-200 font-['Manrope'] text-sm" href="#">Política de Privacidad</a>
+<a class="text-slate-500 hover:text-cyan-400 transition-colors duration-200 font-['Manrope'] text-sm" href="#">Términos de Servicio</a>
+<a class="text-slate-500 hover:text-cyan-400 transition-colors duration-200 font-['Manrope'] text-sm" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-cyan-400 transition-colors duration-200 font-['Manrope'] text-sm" href="#">GitHub</a>
+</div>
+<div class="opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-md bg-surface-container-high flex items-center justify-center border border-outline-variant/20 hover:border-primary/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="mail">mail</span>
+</div>
+<div class="w-10 h-10 rounded-md bg-surface-container-high flex items-center justify-center border border-outline-variant/20 hover:border-primary/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="share">share</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body></html>
